@@ -7,19 +7,6 @@
   {{> gachaList}}
 </body>
  
-<!-- define a template called gachaList 
-<template name="gachaList">
-  <p>All Items</p>
-  {{#each items}}
-    {{> gachaItem}}
-  {{/each}}
-</template>  -->
- 
-<!-- define a template called gachaItem 
-<template name="gachaItem">
-  <div>{{name}}</div>
-</template> -->
-
 <!-- new gachaList template  -->
 <template name="gachaList">
   <p>Gacha Items</p>
@@ -61,6 +48,34 @@
   </tr>
 </template>
 
+<template name="gachaItem">
+  {{#if editing}}
+    <tr>
+      <td><input type="text" id="editgachaDesigner" value="{{gachaDesigner}}"></td>
+      <td><input type="text" id="editgachaEvent" value="{{gachaEvent}}"></td>
+      <td><input type="text" id="editgachaName" value="{{gachaName}}"></td>
+      <td><input type="text" id="editgachaColor" value="{{gachaColor}}"></td>
+      <td><input type="text" id="editgachaSize" value="{{gachaSize}}"></td>
+      <td><input type="text" id="editgachaRarity" value="{{gachaRarity}}"></td>
+      <td><input type="text" id="editgachaQty" value="{{gachaQty}}"></td>
+      <td><input type="text" id="editgachaPrice" value="{{gachaPrice}}"></td>
+      <td><button class="saveItem">save</button><button class="cancelItem">Cancel</button>{{#each errors}}<div>{{message}}</div>{{/each}}</td>
+    </tr>
+  {{else}}
+    <tr>
+    <td>{{gachaDesigner}}</td>
+    <td>{{gachaEvent}}</td>
+    <td>{{gachaName}}</td>
+    <td>{{gachaColor}}</td>
+    <td>{{gachaSize}}</td>
+    <td>{{gachaRarity}}</td>
+    <td>{{gachaQty}}</td>
+    <td>{{gachaPrice}}</td>
+      <td><button class="editItem">Edit</button><button class="deleteItem">Delete</button></td>
+    </tr>
+  {{/if}}
+</template>
+ 
 
 <template name="addGacha">      
   <form id="addGachaForm">
@@ -93,6 +108,5 @@
 </template>
 
 
- 
 
 
