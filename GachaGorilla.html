@@ -1,14 +1,98 @@
 <head>
-  <title>GachaGorilla</title>
+  <title>Gacha Gorilla</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
+  <h1>Gacha List</h1>
+  {{> gachaList}}
 </body>
+ 
+<!-- define a template called gachaList 
+<template name="gachaList">
+  <p>All Items</p>
+  {{#each items}}
+    {{> gachaItem}}
+  {{/each}}
+</template>  -->
+ 
+<!-- define a template called gachaItem 
+<template name="gachaItem">
+  <div>{{name}}</div>
+</template> -->
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<!-- new gachaList template  -->
+<template name="gachaList">
+  <p>Gacha Items</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Designer</th> 
+        <th>Event</th>     
+        <th>Name</th>
+        <th>Color</th>
+        <th>Size</th>
+        <th>Rarity</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>  
+    {{#each items}}
+      {{> gachaItem}}
+    {{/each}}
+    </tbody>
+  </table>
+  {{> addGacha}}
 </template>
+
+<template name="gachaItem">
+  <tr>
+    <td>{{gachaDesigner}}</td>
+    <td>{{gachaEvent}}</td>
+    <td>{{gachaName}}</td>
+    <td>{{gachaColor}}</td>
+    <td>{{gachaSize}}</td>
+    <td>{{gachaRarity}}</td>
+    <td>{{gachaQty}}</td>
+    <td>{{gachaPrice}}</td>
+   
+    <td><button class="deleteItem">Delete</button></td>
+  </tr>
+</template>
+
+
+<template name="addGacha">      
+  <form id="addGachaForm">
+    <label for="gachaDesigner">Designer:</label>
+    <input type="text" id="gachaDesigner">
+
+    <label for="gachaEvent">Event:</label>
+    <input type="text" id="gachaEvent">
+
+    <label for="gachaName">Gacha Name:</label>
+    <input type="text" id="gachaName">
+
+    <label for="gachaColor">Color:</label>
+    <input type="text" id="gachaColor">
+
+    <label for="gachaSize">Size:</label>
+    <input type="text" id="gachaSize">
+
+    <label for="gachaRarity">Rarity:</label>
+    <input type="text" id="gachaRarity">
+
+    <label for="gachaQty">Qty</label>
+    <input type="text" id="gachaQty">
+
+    <label for="gachaPrice">Price:</label>
+    <input type="text" id="gachaPrice"> 
+  
+    <input type="submit" id="addNewGacha" value="Add Gacha">
+  </form>
+</template>
+
+
+ 
+
+

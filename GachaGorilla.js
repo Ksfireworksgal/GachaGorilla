@@ -1,23 +1,39 @@
+gachaList = new Mongo.Collection("GachaList");
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+     
+Template.gachaList.helpers({
+    items: function() {
+      var results=gachaList.find();
+      return results;
     }
-  });
+  });  
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
-}
+Template.addGacha.events({
+  'submit form': function(e, b){
+    var newItem = {
+      gachaDesigner: $('#gachaDesigner').val(),
+      gachaEvent: $('#gachaEvent').val(),
+      gachaName: $('#gachaName').val(),
+      gachaColor: $('#gachaColor').val(),
+      gachaSize: $('#gachaSize').val(),
+      gachaRarity: $('#gachaRarity').val(),
+      gachaQty: $('#gachaQty').val(),
+      gachaPrice: $('#gachaPrice').val(),
+      
+    };
+ 
+    gachaList.insert(newItem);
+ 
+    $('#addItemForm').find('input:text').val('');
+    $('#itemStore').focus();
+    return false;
+  }
+});
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+Template.gachaItem.events({
+  'click .deleteItem': function(){
+    gachaList.remove(this._id);
+  }
+});
+
 }
