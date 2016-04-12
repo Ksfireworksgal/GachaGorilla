@@ -18,7 +18,7 @@ Template.addItem.events({
     Items.insert(newItem);
  
     $('#addItemForm').find('input:text').val('');
-    $('#itemStore').focus();
+    $('#itemdesigner').focus();
     return false;
   }
 });
@@ -54,14 +54,14 @@ Template.item.events({
 
 var saveItem = function(){
   var editItem = {
-    designer: $("#editItemdesigner").val(),
-    eventName: $("#editItemeventName").val(),
-    gachaName: $("#editItemgachaName").val(),
-    rarity: $("#editItemrairty").val(),
-    color: $("#editItemcolor").val(),
-    size: $("#editItemsize").val(),
-    qty: $("#editItemqty").val(),
-    price: $("#editItemprice").val()
+    designer: $("#edititemdesigner").val(),
+    eventName: $("#edititemeventName").val(),
+    gachaName: $("#edititemgachaName").val(),
+    rarity: $("#edititemrairty").val(),
+    color: $("#edititemcolor").val(),
+    size: $("#edititemsize").val(),
+    qty: $("#edititemqty").val(),
+    price: $("#edititemprice").val()
   }
 
   Items.update(Session.get('editItemId'), {$set: editItem});

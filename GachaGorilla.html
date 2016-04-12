@@ -37,7 +37,6 @@
 <!-- Template for new items -->
 <template name="item">
 	{{#if editing}}
-
     <tr>
       <td><input type="text" id="editItemdesigner" value="{{designer}}"></td>
       <td><input type="text" id="editItemeventName" value="{{eventName}}"></td>
@@ -45,9 +44,10 @@
       <td><input type="text" id="editItemrarity" value="{{rarity}}"></td>
       <td><input type="text" id="editItemcolor" value="{{color}}"></td>
       <td><input type="text" id="editItemsize" value="{{size}}"></td>
-      <td><input type="text" id="editItemQty" value="{{qty}}"></td>
+      <td><input type="text" id="editItemqty" value="{{qty}}"></td>
       <td><input type="text" id="editItemPrice" value="{{price}}"></td>
-      <td><button class="saveItem">save</button><button class="cancelItem">Cancel</button>{{#each errors}}<div>{{message}}</div>{{/each}}</td>
+      <td><button class="saveItem">save</button>
+      <button class="cancelItem">Cancel</button>{{#each errors}}<div>{{message}}</div>{{/each}}</td>
     </tr>
   {{else}}
     <tr>
@@ -59,7 +59,8 @@
       <td>{{size}}</td>
       <td>{{qty}}</td>
       <td>{{price}}</td>
-      <td><button class="editItem">Edit</button><button class="deleteItem">Delete</button></td>
+      <td><button class="editItem">Edit</button>
+      <button class="deleteItem">Delete</button></td>
     </tr>
   {{/if}}
 </template>
@@ -68,7 +69,7 @@
 <template name="addItem">      
   <form id="addItemForm">
     <label for="itemdesigner">Desginer:</label>
-    <input type="text" id="itemDesigner">
+    <input type="text" id="itemdesigner">
     <label for="itemeventName">Event Name:</label>
     <input type="text" id="itemeventName">
     <label for="itemgachaName">Gacha Name:</label>
