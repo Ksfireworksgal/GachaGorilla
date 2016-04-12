@@ -1,29 +1,33 @@
 <head>
 	<title>GachaGorilla</title>
+	<meta name="viewport" content-"width=device-width, initial-scale=1">
 </head>
 
 <!-- add code to the <body> of the page -->
 <body>
-  <h1>Welcome To Gacha Gorilla</h1>
-  {{> itemList}}
+	<nav class="ui menu">
+ 	 <h1 class="header item">Welcome To Gacha Gorilla</h1>
+	</nav>
+	<div class="ui grid">
+		<div class="column">{{> itemList}}</div>
+	</div>
 </body>
 
 <!-- define a template called itemList -->
 <template name="itemList">
-
-<template name="addItem">
-  {{> itemerrors contextName="updateForm"}}
   <p>All Items</p>
-  <table>
+   {{> addItem}}
+   {{> itemerrors contextName="UpdateForm"}}
+  <table class="ui small very compact celled striped table">
     <thead>
       <tr>
-        <th>Store</th>      
-        <th>Name</th>
-        <th>Weight</th>
-        <th>Weight Type</th>
-        <th>Qty</th>
-        <th>Qty Type</th>
-        <th>Price</th>
+       <th class="two column wide">Store</th>      
+       <th class="two column wide">Name</th>
+       <th class="two column wide">Weight</th>
+       <th class="two column wide">Weight Type</th>
+       <th class="two column wide">Qty</th>
+       <th class="two column wide">Qty Type</th>
+       <th class="two column wide">Price</th>
         <th></th>
       </tr>
     </thead>
@@ -33,21 +37,21 @@
     {{/each}}
     </tbody>
   </table>
-  {{> addItem}}
 </template>
+
 
 <!-- define a template called item -->
 <template name="item">
   {{#if editing}}
-    <tr>
-      <td><input type="text" id="editItemStore" value="{{store}}"></td>
-      <td><input type="text" id="editItemName" value="{{name}}"></td>
-      <td><input type="text" id="editItemWeight" value="{{weight}}"></td>
-      <td><input type="text" id="editItemWeightType" value="{{weightType}}"></td>
-      <td><input type="text" id="editItemQty" value="{{qty}}"></td>
-      <td><input type="text" id="editItemQtyType" value="{{qtyType}}"></td>
-      <td><input type="text" id="editItemPrice" value="{{price}}"></td>
-      <td><button class="saveItem">save</button><button class="cancelItem">Cancel</button>{{#each errors}}<div>{{message}}</div>{{/each}}</td>
+    <tr class="ui form">
+      <td><div class="ui mini input"><input type="text" id="editItemStore" value="{{store}}"></div></td>
+      <td><div class="ui mini input"><input type="text" id="editItemName" value="{{name}}"></div></td>
+      <td><div class="ui mini input"><input type="text" id="editItemWeight" value="{{weight}}"></div></td>
+      <td><div class="ui mini input"><input type="text" id="editItemWeightType" value="{{weightType}}"></div></td>
+      <td><div class="ui mini input"><input type="text" id="editItemQty" value="{{qty}}"></div></td>
+      <td><div class="ui mini input"><input type="text" id="editItemQtyType" value="{{qtyType}}"></div></td>
+      <td><div class="ui mini input"><input type="text" id="editItemPrice" value="{{price}}"></div></td>
+      <td><button class="ui mini primary button saveItem"><i class="ui save icon"></i>Save</button><button class="ui mini red button cancelItem"><i class="ui cancel icon"></i>Cancel</button></td>
     </tr>
   {{else}}
     <tr>
@@ -58,36 +62,72 @@
       <td>{{qty}}</td>
       <td>{{qtyType}}</td>
       <td>{{price}}</td>
-      <td><button class="editItem">Edit</button><button class="deleteItem">Delete</button></td>
+      <td><button class="ui mini primary button editItem"><i class="ui edit icon"></i>Edit</button><button class="ui mini red button deleteItem"><i class="ui delete icon"></i>Delete</button></td>
     </tr>
   {{/if}}
 </template>
 
 
 <!-- define a template called add item -->
-<template name="addItem">   
-  {{> itemerrors contextName="insertForm"}} 
-  <form id="addItemForm">
-    <label for="itemStore">Store:</label>
-    <input type="text" id="itemStore">
-    <label for="itemName">Name:</label>
-    <input type="text" id="itemName">
-    <label for="itemWeight">Weight:</label>
-    <input type="text" id="itemWeight">
-    <label for="itemWeightType">Weight Type:</label>
-    <input type="text" id="itemWeightType">
-    <label for="itemQty">Qty</label>
-    <input type="text" id="itemQty">
-    <label for="itemQtyType">Qty Type:</label>
-    <input type="text" id="itemQtyType"> 
-    <label for="itemPrice">Price:</label>
-    <input type="text" id="itemPrice">
-    <input type="submit" id="addNewItem" value="Add Item">
-  </form>
+<template name="addItem">
+<div id="addItemAccordion" class="ui styled fluid accordion">
+  <div class="title">
+    <div class="ui mini green button"><i class="ui add icon"></i>Add Items</div>  
+  </div>
+
+  <div class="content">{{> itemerrors contextName="insertForm" errorMessage="There was an error inserting the record."}}
+    <form class="ui form" id="addItemForm">
+      <div class="two fields">
+        <div class="field">
+          <label for="itemStore">Store:</label>
+          <input type="text" id="itemStore">
+        </div>
+        <div class="field">
+          <label for="itemName">Item Description:</label>
+          <input type="text" id="itemName">
+        </div>
+      </div>
+      <div class="five fields">
+        <div class="field">
+          <label for="itemWeight">Weight:</label>
+          <input type="text" id="itemWeight">
+        </div>
+        <div class="field">
+          <label for="itemWeightType">Weight Type:</label>
+          <input type="text" id="itemWeightType">
+        </div>
+        <div class="field">
+          <label for="itemQty">Qty</label>
+          <input type="text" id="itemQty">
+        </div>
+        <div class="field">
+          <label for="itemQtyType">Qty Type:</label>
+          <input type="text" id="itemQtyType">
+        </div>
+        <div class="field">
+          <label for="itemPrice">Price:</label>
+          <input type="text" id="itemPrice">
+        </div>
+      </div>
+      <input type="submit" id="addNewItem" class="ui mini primary button" value="Save">
+      <div id="cancelButton" class="button ui mini red button">Cancel</div>
+    </form>
+  </div>
+</div>
 </template>
 
 <template name="itemerrors">
-  {{#each errors}}
-  <div class="errors {{../contextName}}">{{message}}</div>
-  {{/each}}
-</template>
+  {{#if errors}}
+    <div class="ui error message">
+      <i class="close icon"></i>
+      <div class="header">
+        {{errorMessage}}
+      </div>
+      <ul class="list">
+        {{#each errors}}
+          <li class="errors {{../contextName}}">{{message}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+ </template>
