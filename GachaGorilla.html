@@ -2,25 +2,27 @@
 	<title>GachaGorilla</title>
 </head>
 
+<!-- add code to the <body> of the page -->
 <body>
-	<h1>Gacha Gorilla</h1>
-	{{> itemList }}
+  <h1>Welcome To Gacha Gorilla</h1>
+  {{> itemList}}
 </body>
 
-<!-- template to create the initial list-->
-
+<!-- define a template called itemList -->
 <template name="itemList">
+
+<template name="addItem">
+  {{> itemerrors contextName="updateForm"}}
   <p>All Items</p>
   <table>
     <thead>
       <tr>
-        <th>Designer</th>      
-        <th>Event Name</th>
-        <th>Gacha Name</th>
-        <th>Rarity</th>
-        <th>Color</th>
-        <th>Size</th>
+        <th>Store</th>      
+        <th>Name</th>
+        <th>Weight</th>
+        <th>Weight Type</th>
         <th>Qty</th>
+        <th>Qty Type</th>
         <th>Price</th>
         <th></th>
       </tr>
@@ -34,57 +36,58 @@
   {{> addItem}}
 </template>
 
-<!-- Template for new items -->
+<!-- define a template called item -->
 <template name="item">
-	{{#if editing}}
+  {{#if editing}}
     <tr>
-      <td><input type="text" id="editItemdesigner" value="{{designer}}"></td>
-      <td><input type="text" id="editItemeventName" value="{{eventName}}"></td>
-      <td><input type="text" id="editItemgachaName" value="{{gachaName}}"></td>
-      <td><input type="text" id="editItemrarity" value="{{rarity}}"></td>
-      <td><input type="text" id="editItemcolor" value="{{color}}"></td>
-      <td><input type="text" id="editItemsize" value="{{size}}"></td>
-      <td><input type="text" id="editItemqty" value="{{qty}}"></td>
+      <td><input type="text" id="editItemStore" value="{{store}}"></td>
+      <td><input type="text" id="editItemName" value="{{name}}"></td>
+      <td><input type="text" id="editItemWeight" value="{{weight}}"></td>
+      <td><input type="text" id="editItemWeightType" value="{{weightType}}"></td>
+      <td><input type="text" id="editItemQty" value="{{qty}}"></td>
+      <td><input type="text" id="editItemQtyType" value="{{qtyType}}"></td>
       <td><input type="text" id="editItemPrice" value="{{price}}"></td>
-      <td><button class="saveItem">save</button>
-      <button class="cancelItem">Cancel</button>{{#each errors}}<div>{{message}}</div>{{/each}}</td>
+      <td><button class="saveItem">save</button><button class="cancelItem">Cancel</button>{{#each errors}}<div>{{message}}</div>{{/each}}</td>
     </tr>
   {{else}}
     <tr>
-      <td>{{designer}}</td>
-      <td>{{eventName}}</td>
-      <td>{{gachaName}}</td>
-      <td>{{rarity}}</td>
-      <td>{{color}}</td>
-      <td>{{size}}</td>
+      <td>{{store}}</td>
+      <td>{{name}}</td>
+      <td>{{weight}}</td>
+      <td>{{weightType}}</td>
       <td>{{qty}}</td>
+      <td>{{qtyType}}</td>
       <td>{{price}}</td>
-      <td><button class="editItem">Edit</button>
-      <button class="deleteItem">Delete</button></td>
+      <td><button class="editItem">Edit</button><button class="deleteItem">Delete</button></td>
     </tr>
   {{/if}}
 </template>
 
-<!-- template that will add the items with helpers -->
-<template name="addItem">      
+
+<!-- define a template called add item -->
+<template name="addItem">   
+  {{> itemerrors contextName="insertForm"}} 
   <form id="addItemForm">
-    <label for="itemdesigner">Desginer:</label>
-    <input type="text" id="itemdesigner">
-    <label for="itemeventName">Event Name:</label>
-    <input type="text" id="itemeventName">
-    <label for="itemgachaName">Gacha Name:</label>
-    <input type="text" id="itemgachaName">
-    <label for="itemrarity">Rarity:</label>
-    <input type="text" id="itemrarity">
-    <label for="itemcolor">Color</label>
-    <input type="text" id="itemcolor">
-    <label for="itemsize">Size:</label>
-    <input type="text" id="itemsize"> 
-    <label for="itemqty">Qty:</label>
-    <input type="text" id="itemqty">
+    <label for="itemStore">Store:</label>
+    <input type="text" id="itemStore">
+    <label for="itemName">Name:</label>
+    <input type="text" id="itemName">
+    <label for="itemWeight">Weight:</label>
+    <input type="text" id="itemWeight">
+    <label for="itemWeightType">Weight Type:</label>
+    <input type="text" id="itemWeightType">
+    <label for="itemQty">Qty</label>
+    <input type="text" id="itemQty">
+    <label for="itemQtyType">Qty Type:</label>
+    <input type="text" id="itemQtyType"> 
     <label for="itemPrice">Price:</label>
     <input type="text" id="itemPrice">
-
     <input type="submit" id="addNewItem" value="Add Item">
   </form>
+</template>
+
+<template name="itemerrors">
+  {{#each errors}}
+  <div class="errors {{../contextName}}">{{message}}</div>
+  {{/each}}
 </template>

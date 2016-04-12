@@ -1,33 +1,87 @@
 Items = new Mongo.Collection('items');
 
-if (Meteor.isClient) {
+//create schema for data validation 
+Items.attachSchema(new SimpleSchema({
+  store: {
+    type: String,
+    label: "Store Name",
+    max: 200
+  },
+  name: {
+    type: String,
+    label: "Name",
+    max: 200
+  },
+  weight: {
+    type: Number,
+    label: "Weight",
+    decimal: true,
+    min: 0  
+  },
+  weightType: {
+    type: String,
+    label: "Weight Type",
+    max: 200
+  },
+  qty: {
+    type: Number,
+    label: "Quantity",
+    decimal: true
+  },
+  qtyType: {
+    type: String,
+    label: "Quantity Type",
+    max: 200
+  },
+  price: {
+    type: Number,
+    label: "Price",
+    decimal: true
+  }
+}));  // close validation schema
 
+
+
+if(Meteor.isClient){
+  Template.itemList.helpers({
+    items: function() {
+      return Items.find();
+    }
+  }); 
+
+
+//creating an object from the form fields - inserting the object - clearing out the form
 Template.addItem.events({
   'submit form': function(e, b){
     var newItem = {
-      desginer: $('#itemdesigner').val(),
-      eventName: $('#itemeventName').val(),
-      gachaName: $('#itemgachaName').val(),
-      rarity: $('#itemrarity').val(),
-      color: $('#itemcolor').val(),
-      size:$('#itemsize').val(),
-      qty: $('#itemqty').val(),
-      price: $('#itemprice').val()
+      store: $('#itemStore').val(),
+      name: $('#itemName').val(),
+      weight: $('#itemWeight').val(),
+      weightType: $('#itemWeightType').val(),
+      qty: $('#itemQty').val(),
+      qtyType: $('#itemQtyType').val(),
+      price: $('#itemPrice').val()
     };
 
-    Items.insert(newItem);
- 
-    $('#addItemForm').find('input:text').val('');
-    $('#itemdesigner').focus();
+    Items.insert(newItem, {validationContext: 'insertForm'}, function(error, result) {
+      if(!error){    
+        $('#addItemForm').find('input:text').val('');
+        $('#itemStore').focus();
+      }
+    });
+
     return false;
   }
 });
+
+//set up edit item function
 Template.item.helpers({
   editing: function(){
     return Session.equals('editItemId', this._id);
-  },
+  } 
 });
 
+//set up delete Item function
 Template.item.events({
   'click .deleteItem': function(){
     Items.remove(this._id);
@@ -35,10 +89,10 @@ Template.item.events({
   'click .editItem': function(){
     Session.set('editItemId', this._id);
   },
-    'click .cancelItem': function(){
+  'click .cancelItem': function(){
     Session.set('editItemId', null);
   },
-  'click .saveItem': function(){
+   'click .saveItem': function(){
     saveItem();
   },
   'keypress input': function(e){
@@ -49,39 +103,68 @@ Template.item.events({
       Session.set('editItemId', null);
     }
   }
-
-});//closes the template.item.events
+});// close template events
 
 var saveItem = function(){
   var editItem = {
-    designer: $("#edititemdesigner").val(),
-    eventName: $("#edititemeventName").val(),
-    gachaName: $("#edititemgachaName").val(),
-    rarity: $("#edititemrairty").val(),
-    color: $("#edititemcolor").val(),
-    size: $("#edititemsize").val(),
-    qty: $("#edititemqty").val(),
-    price: $("#edititemprice").val()
+    store: $("#editItemStore").val(),
+    name: $("#editItemName").val(),
+    weight: $("#editItemWeight").val(),
+    weightType: $("#editItemWeightType").val(),
+    qty: $("#editItemQty").val(),
+    qtyType: $("#editItemQtyType").val(),
+    price: $("#editItemPrice").val()
   }
 
-  Items.update(Session.get('editItemId'), {$set: editItem});
+  Items.update(Session.get('editItemId'), {$set: editItem}, {validationContext: 'updateForm'}, function(error, result) {
+      if(!error){    
   Session.set('editItemId', null);
 }
+});
+} 
 
-  
-  
-
-
-
-
-
-
-
-
+Template.itemerrors.helpers({
+  errors: function(){
+    var context = Items.simpleSchema().namedContext(this.contextName);
+    return context.invalidKeys().map(function(data){ return {message: context.keyErrorMessage(data.name)}});
+  }
+});
 
 
 
 
 
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}// end client
+
+if (Meteor.isServer) {
+  Meteor.startup(function () {
+    // code to run on server at startup
+  });
+}// end server
