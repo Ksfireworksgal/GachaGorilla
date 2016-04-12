@@ -40,45 +40,50 @@
 <!-- Template for new items -->
 <template name="item">
 	{{#if editing}}
-  <tr>
-    <td><input type="text" id="editItemdesigner" value="{{designer}}"></td>
-    <td><input type="text" id="editItemeventName" value="{{eventName}}"></td>
-    <td><input type="text" id="editItemgachaName" value="{{gachaName}}"></td>
-    <td><input type="text" id="editItemderarity" value="{{rarity}}"></td>
-    <td><input type="text" id="editItemcolor" value="{{color}}"></td>
-    <td><input type="text" id="editItemsize" value="{{size}}"></td>
-    <td><input type="text" id="editItemqty" value="{{qty}}"></td>
-    <td><input type="text" id="editItemprice" value="{{price}}"></td>
-    <td><input type="text" id="editItemdesigner" value="{{designer}}"></td>
 
-    <td>{{eventName}}</td>
-    <td>{{gachaName}}</td>
-    <td>{{rarity}}</td>
-    <td>{{color}}</td>
-    <td>{{size}}</td>
-    <td>{{qty}}</td>
-    <td>{{price}}</td>
-    <td><button class="deleteItem">Delete</button></td>
-  </tr>
+    <tr>
+      <td><input type="text" id="editItemdesigner" value="{{designer}}"></td>
+      <td><input type="text" id="editItemeventName" value="{{eventName}}"></td>
+      <td><input type="text" id="editItemgachaName" value="{{gachaName}}"></td>
+      <td><input type="text" id="editItemrarity" value="{{rarity}}"></td>
+      <td><input type="text" id="editItemcolor" value="{{color}}"></td>
+      <td><input type="text" id="editItemsize" value="{{size}}"></td>
+      <td><input type="text" id="editItemQty" value="{{qty}}"></td>
+      <td><input type="text" id="editItemPrice" value="{{price}}"></td>
+      <td><button class="saveItem">save</button><button class="cancelItem">Cancel</button>{{#each errors}}<div>{{message}}</div>{{/each}}</td>
+    </tr>
+  {{else}}
+    <tr>
+      <td>{{designer}}</td>
+      <td>{{eventName}}</td>
+      <td>{{gachaName}}</td>
+      <td>{{rarity}}</td>
+      <td>{{color}}</td>
+      <td>{{size}}</td>
+      <td>{{qty}}</td>
+      <td>{{price}}</td>
+      <td><button class="editItem">Edit</button><button class="deleteItem">Delete</button></td>
+    </tr>
+  {{/if}}
 </template>
 
 <!-- template that will add the items with helpers -->
 <template name="addItem">      
   <form id="addItemForm">
     <label for="itemdesigner">Desginer:</label>
-    <input type="text" id="itemStore">
+    <input type="text" id="itemDesigner">
     <label for="itemeventName">Event Name:</label>
-    <input type="text" id="itemName">
+    <input type="text" id="itemeventName">
     <label for="itemgachaName">Gacha Name:</label>
-    <input type="text" id="itemWeight">
+    <input type="text" id="itemgachaName">
     <label for="itemrarity">Rarity:</label>
-    <input type="text" id="itemWeightType">
+    <input type="text" id="itemrarity">
     <label for="itemcolor">Color</label>
-    <input type="text" id="itemQty">
+    <input type="text" id="itemcolor">
     <label for="itemsize">Size:</label>
-    <input type="text" id="itemQtyType"> 
+    <input type="text" id="itemsize"> 
     <label for="itemqty">Qty:</label>
-    <input type="text" id="itemPrice">
+    <input type="text" id="itemqty">
     <label for="itemPrice">Price:</label>
     <input type="text" id="itemPrice">
 
