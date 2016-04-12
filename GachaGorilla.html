@@ -39,8 +39,18 @@
 
 <!-- Template for new items -->
 <template name="item">
+	{{#if editing}}
   <tr>
-    <td>{{designer}}</td>
+    <td><input type="text" id="editItemdesigner" value="{{designer}}"></td>
+    <td><input type="text" id="editItemeventName" value="{{eventName}}"></td>
+    <td><input type="text" id="editItemgachaName" value="{{gachaName}}"></td>
+    <td><input type="text" id="editItemderarity" value="{{rarity}}"></td>
+    <td><input type="text" id="editItemcolor" value="{{color}}"></td>
+    <td><input type="text" id="editItemsize" value="{{size}}"></td>
+    <td><input type="text" id="editItemqty" value="{{qty}}"></td>
+    <td><input type="text" id="editItemprice" value="{{price}}"></td>
+    <td><input type="text" id="editItemdesigner" value="{{designer}}"></td>
+
     <td>{{eventName}}</td>
     <td>{{gachaName}}</td>
     <td>{{rarity}}</td>
