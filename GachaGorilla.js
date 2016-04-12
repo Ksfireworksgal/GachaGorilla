@@ -5,13 +5,14 @@ if (Meteor.isClient) {
 Template.addItem.events({
   'submit form': function(e, b){
     var newItem = {
-      store: $('#itemStore').val(),
-      name: $('#itemName').val(),
-      weight: $('#itemWeight').val(),
-      weightType: $('#itemWeightType').val(),
-      qty: $('#itemQty').val(),
-      qtyType: $('#itemQtyType').val(),
-      price: $('#itemPrice').val()
+      desginer: $('#itemdesigner').val(),
+      eventName: $('#itemeventName').val(),
+      gachaName: $('#itemgachaName').val(),
+      rarity: $('#itemrarity').val(),
+      color: $('#itemcolor').val(),
+      size:$('#itemsize').val(),
+      qty: $('#itemqty').val(),
+      price: $('#itemprice').val()
     };
 
     Items.insert(newItem);
