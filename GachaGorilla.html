@@ -21,12 +21,13 @@
   <table class="ui small very compact celled striped table">
     <thead>
       <tr>
-       <th class="two column wide">Store</th>      
-       <th class="two column wide">Name</th>
-       <th class="two column wide">Weight</th>
-       <th class="two column wide">Weight Type</th>
+       <th class="two column wide">Designer</th>      
+       <th class="two column wide">Event</th>
+       <th class="two column wide">Gacha</th>
+       <th class="two column wide">Rarity</th>
+       <th class="two column wide">Color</th>
+       <th class="two column wide">Size</th>
        <th class="two column wide">Qty</th>
-       <th class="two column wide">Qty Type</th>
        <th class="two column wide">Price</th>
         <th></th>
       </tr>
@@ -44,23 +45,25 @@
 <template name="item">
   {{#if editing}}
     <tr class="ui form">
-      <td><div class="ui mini input"><input type="text" id="editItemStore" value="{{store}}"></div></td>
-      <td><div class="ui mini input"><input type="text" id="editItemName" value="{{name}}"></div></td>
-      <td><div class="ui mini input"><input type="text" id="editItemWeight" value="{{weight}}"></div></td>
-      <td><div class="ui mini input"><input type="text" id="editItemWeightType" value="{{weightType}}"></div></td>
+      <td><div class="ui mini input"><input type="text" id="editItemDesigner" value="{{Designer}}"></div></td>
+      <td><div class="ui mini input"><input type="text" id="editItemEvent" value="{{Event}}"></div></td>
+      <td><div class="ui mini input"><input type="text" id="editItemGacha" value="{{Gacha}}"></div></td>
+      <td><div class="ui mini input"><input type="text" id="editItemRarity" value="{{Rarity}}"></div></td>
+      <td><div class="ui mini input"><input type="text" id="editItemColor" value="{{Color}}"></div></td>
+      <td><div class="ui mini input"><input type="text" id="editItemSize" value="{{Size}}"></div></td>
       <td><div class="ui mini input"><input type="text" id="editItemQty" value="{{qty}}"></div></td>
-      <td><div class="ui mini input"><input type="text" id="editItemQtyType" value="{{qtyType}}"></div></td>
       <td><div class="ui mini input"><input type="text" id="editItemPrice" value="{{price}}"></div></td>
       <td><button class="ui mini primary button saveItem"><i class="ui save icon"></i>Save</button><button class="ui mini red button cancelItem"><i class="ui cancel icon"></i>Cancel</button></td>
     </tr>
   {{else}}
     <tr>
-      <td>{{store}}</td>
-      <td>{{name}}</td>
-      <td>{{weight}}</td>
-      <td>{{weightType}}</td>
+      <td>{{Designer}}</td>
+      <td>{{Event}}</td>
+      <td>{{Gacha}}</td>
+      <td>{{Rarity}}</td>
+      <td>{{Color}}</td>
+      <td>{{Size}}</td>
       <td>{{qty}}</td>
-      <td>{{qtyType}}</td>
       <td>{{price}}</td>
       <td><button class="ui mini primary button editItem"><i class="ui edit icon"></i>Edit</button><button class="ui mini red button deleteItem"><i class="ui delete icon"></i>Delete</button></td>
     </tr>
@@ -79,30 +82,34 @@
     <form class="ui form" id="addItemForm">
       <div class="two fields">
         <div class="field">
-          <label for="itemStore">Store:</label>
-          <input type="text" id="itemStore">
+          <label for="itemDesigner">Designer:</label>
+          <input type="text" id="itemDesigner">
         </div>
         <div class="field">
-          <label for="itemName">Item Description:</label>
-          <input type="text" id="itemName">
+          <label for="itemEvent">Event:</label>
+          <input type="text" id="itemEvent">
         </div>
       </div>
       <div class="five fields">
         <div class="field">
-          <label for="itemWeight">Weight:</label>
-          <input type="text" id="itemWeight">
+          <label for="itemGacha">Gacha:</label>
+          <input type="text" id="itemGacha">
         </div>
         <div class="field">
-          <label for="itemWeightType">Weight Type:</label>
-          <input type="text" id="itemWeightType">
+          <label for="itemRarity">Rarity:</label>
+          <input type="text" id="itemRarity">
+        </div>
+        <div class="field">
+          <label for="itemColor">Color</label>
+          <input type="text" id="itemColor">
+        </div>
+        <div class="field">
+          <label for="itemSize">Size:</label>
+          <input type="text" id="itemSize">
         </div>
         <div class="field">
           <label for="itemQty">Qty</label>
           <input type="text" id="itemQty">
-        </div>
-        <div class="field">
-          <label for="itemQtyType">Qty Type:</label>
-          <input type="text" id="itemQtyType">
         </div>
         <div class="field">
           <label for="itemPrice">Price:</label>

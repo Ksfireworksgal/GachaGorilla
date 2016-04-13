@@ -2,36 +2,40 @@ Items = new Mongo.Collection('items');
 
 //create schema for data validation 
 Items.attachSchema(new SimpleSchema({
-  store: {
+ Designer: {
     type: String,
-    label: "Store Name",
+    label: "Designer",
     max: 200
   },
-  name: {
+  Event: {
     type: String,
-    label: "Name",
+    label: "Event",
     max: 200
   },
-  weight: {
-    type: Number,
-    label: "Weight",
-    decimal: true,
-    min: 0  
-  },
-  weightType: {
+  Gacha: {
     type: String,
-    label: "Weight Type",
+    label: "Gacha",
+    max: 200  
+  },
+  Rarity: {
+    type: String,
+    label: "Rarity",
+    max: 200
+  },
+  Color: {
+    type: String,
+    label: "Color",
+    max:  100
+  },
+  Size: {
+    type: String,
+    label: "Size",
     max: 200
   },
   qty: {
     type: Number,
     label: "Quantity",
     decimal: true
-  },
-  qtyType: {
-    type: String,
-    label: "Quantity Type",
-    max: 200
   },
   price: {
     type: Number,
@@ -53,19 +57,20 @@ if(Meteor.isClient){
 //creating an object from the form fields - inserting the object - clearing out the form
 var addItem = function(){
   var newItem = {
-    store: $('#itemStore').val(),
-    name: $('#itemName').val(),
-    weight: $('#itemWeight').val(),
-    weightType: $('#itemWeightType').val(),
+    Designer: $('#itemDesigner').val(),
+    Event: $('#itemEvent').val(),
+    Rarity: $('#itemRarity').val(),
+    Gacha: $('#itemGacha').val(),
+    Color: $('#itemColor').val(),
+    Size: $('#itemSize').val(),
     qty: $('#itemQty').val(),
-    qtyType: $('#itemQtyType').val(),
     price: $('#itemPrice').val()
   };
  
   Items.insert(newItem, {validationContext: 'insertForm'}, function(error, result) {
     if(!error){
       this.$('form').find('input:text').val('');
-      $('#itemStore').focus();
+      $('#itemDesigner').focus();
     }
   });
 }
@@ -96,7 +101,7 @@ Template.addItem.rendered = function(){
   var self = this;
   $('#addItemAccordion.ui.accordion').accordion({
     onOpen: function(){
-      self.$('#itemStore').focus();
+      self.$('#itemDesigner').focus();
     }
   });
 }
@@ -138,12 +143,13 @@ Template.item.events({
 
 var saveItem = function(){
   var editItem = {
-    store: $("#editItemStore").val(),
-    name: $("#editItemName").val(),
-    weight: $("#editItemWeight").val(),
-    weightType: $("#editItemWeightType").val(),
+    Designer: $("#editItemDesigner").val(),
+    Event: $("#editItemEvent").val(),
+    Gacha: $("#editItemGacha").val(),
+    Rarity: $("#editItemRarity").val(),
+    Color: $("#editItemColor").val(),
+    Size: $("#editItemSize").val(),
     qty: $("#editItemQty").val(),
-    qtyType: $("#editItemQtyType").val(),
     price: $("#editItemPrice").val()
   }
 
